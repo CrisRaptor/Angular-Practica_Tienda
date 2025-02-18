@@ -4,5 +4,12 @@
   <h3>{{ product.name }}</h3>
   <h4>{{ product.price | currency }}</h4>
   <p>{{ product.description }}</p>
-  <button type="button" (click)="addToCart(product)">Buy</button>
+  <p [style.color]="(product.stock<4)?'red':''"> Unidades disponibles: {{ product.stock }}</p>
+  <p> Caracteristicas</p>
+  <ul *ngIf="product.caracteristicas.length > 0">
+    <li *ngFor="let caracteristica of product.caracteristicas">{{caracteristica}}</li>
+  </ul>
+  <p *ngIf="product.garantia"> Garantia: {{product.garantia.periodo}}, Tipo: {{product.garantia.tipo}}</p>
+  
+  <button *ngIf="product.stock != 0" type="button" (click)="addToCart(product)">Buy</button>
 </div>

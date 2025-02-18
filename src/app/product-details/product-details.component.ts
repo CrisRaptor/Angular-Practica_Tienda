@@ -17,8 +17,12 @@ export class ProductDetailsComponent {
   constructor(private route: ActivatedRoute, private cartService: CartService) { }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
-    window.alert('Your product has been added to the cart!');
+    if (product.stock == 0){
+      window.alert('This product has no stock!');
+    } else {
+      this.cartService.addToCart(product);
+      window.alert('Your product has been added to the cart!');
+    }
   }
 
   ngOnInit() {

@@ -1,12 +1,16 @@
 <h2>Products</h2>
 
-<div *ngFor="let product of products">
+<div *ngFor="let product of products" >
+  <div *ngIf="product.stock != 0">
 
     <h3>
       <a [title]="product.name + ' details'"
       [routerLink]="['/products', product.id]">
-        {{ product.name }}
+        {{ product.name }} 
       </a>
+      <p *ngIf="product.stock < 4" [style.color]="(product.stock<4)?'red':''">
+        Ultimas unidades
+      </p>
     </h3>
   
     <p *ngIf="product.description">
@@ -21,4 +25,5 @@
         [product]="product"
         (notify)="onNotify()">
     </app-product-alerts>
+  </div>
 </div>
